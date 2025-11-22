@@ -1,7 +1,11 @@
+// Function: Computer Choice
 getComputerChoice = function () {
+    // Generate a random number between 0 and 2
     let randomNumber = Math.random();
     let newRandomNumber = (randomNumber * 3);
     let floorNumber = Math.floor(newRandomNumber);
+
+    // Map random number to Rock, Paper, Scissor
 
     if (floorNumber === 0) {
         return "Rock";
@@ -13,9 +17,12 @@ getComputerChoice = function () {
 
 };
 
+// Function: Human Choice (Prompt)
+
 getHumanChoice = function () {
     enterInput = prompt("Enter R for Rock P for Paper & S for Scissor");
     userInput = enterInput.toUpperCase()
+    // Convert letters to actual moves
     if (userInput === "R") {
         return "Rock";
     } else if (userInput === "P") {
@@ -25,17 +32,27 @@ getHumanChoice = function () {
     }
 };
 
-
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+// GAME FUNCTION
+// Plays 5 rounds automatically
 
 playGame = function () {
+    // Score variables (only exist inside playGame)
     let humanScore = 0;
     let computerScore = 0;
+
+    // Function: Play 1 Round
+    // Compares choices and updates scores
+
     playRound = function (humanChoice, computerChoice) {
+
+        // If choices are same → tie
+
         if (humanChoice === computerChoice) {
             return "TIE!";
         }
+
+        // Winning logic for human
+
         if (
             (humanChoice === "Rock" && computerChoice === "Scissor") ||
             (humanChoice === "Paper" && computerChoice === "Rock") ||
@@ -43,7 +60,11 @@ playGame = function () {
         ) {
             humanScore++;
             return `You win! ${humanChoice} beats ${computerChoice}`;
-        } else {
+        }
+
+        // If above condition was false → computer wins
+
+        else {
             computerScore++;
             return `Computer wins! ${computerChoice} beats ${humanChoice}`;
         }
@@ -91,6 +112,6 @@ playGame = function () {
         console.log("The game ended in a draw.");
     }
 };
-
+// Start the game
 playGame()
 
